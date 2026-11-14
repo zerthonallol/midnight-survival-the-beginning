@@ -60,3 +60,36 @@ export const TAPE: { id: string; text: T } = { id: "tape1", text: {
 } };
 
 export const voiceUrl = (lang: Lang, id: string) => `/voice/${lang}/${id}.wav`;
+
+// Prologue in the player's 7th-floor apartment; voiced, played before the park intro.
+export type ApartmentVoice = "narr" | "news" | "ghost";
+export const APARTMENT: Record<string, { who: ApartmentVoice; text: T }> = {
+  a_wake: { who: "narr", text: {
+    ru: "Третью ночь не сплю. Седьмой этаж, а дождь лупит в стёкла так, будто хочет войти. Сегодня ровно сорок лет с той ночи.",
+    en: "Third night without sleep. Seventh floor, and the rain hammers the glass like it wants in. Tonight it's been exactly forty years.",
+  } },
+  a_tv: { who: "news", text: {
+    ru: "…и к другим новостям. Жители окраины снова сообщают о свете в заброшенном парке «Весёлые Горки». Парк закрыт с восемьдесят седьмого года, после исчезновения восьмилетнего Томми. Мальчика так и не нашли.",
+    en: "…in other news. Residents again report lights inside the abandoned Happy Hills park. The park has been closed since nineteen eighty-seven, when eight-year-old Tommy disappeared. The boy was never found.",
+  } },
+  a_photo: { who: "narr", text: {
+    ru: "Мы с Томми. Лето восемьдесят седьмого. Я тогда убежал от медведя… а он — нет. Я всем говорил, что внутри костюма кто-то был. Никто не поверил.",
+    en: "Me and Tommy. Summer of eighty-seven. I outran the bear that night… he didn't. I told everyone someone was inside that suit. Nobody believed me.",
+  } },
+  a_phone: { who: "ghost", text: {
+    ru: "…Это Митч. Сторож. Помнишь меня, сынок? Барни снова проснулся. Он ищет того, кто тогда сбежал. Приезжай… пока он не пришёл за тобой сам.",
+    en: "…It's Mitch. The watchman. Remember me, kid? Barney's awake again. He's looking for the one who got away. Come to the park… before he comes for you.",
+  } },
+  a_window: { who: "narr", text: {
+    ru: "Митч погиб в ту же ночь. Я сам видел его имя в газете. Тогда кто мне звонит?.. А там, над крышами — огни. Парк снова горит.",
+    en: "Mitch died that same night. I saw his name in the paper myself. So who's calling me?.. And there, past the rooftops — lights. The park is lit again.",
+  } },
+  a_keys: { who: "narr", text: {
+    ru: "Ключи от машины и фонарик. Если не поеду сейчас — не поеду никогда.",
+    en: "Car keys and the flashlight. If I don't go now, I never will.",
+  } },
+  a_door: { who: "narr", text: {
+    ru: "В подъезде пахнет сыростью. Лифт опять не работает. Ничего. Семь этажей вниз — и в парк.",
+    en: "The stairwell smells of damp. The elevator's dead again. Fine. Seven floors down — and on to the park.",
+  } },
+};
