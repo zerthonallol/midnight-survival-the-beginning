@@ -1047,6 +1047,7 @@ export class Game {
   private loop = () => {
     this.raf = requestAnimationFrame(this.loop);
     const dt = Math.min(this.clock.getDelta(), 0.05);
+    if (!(dt > 0)) { this.renderer.render(this.scene, this.camera); return; }
     const paused = this.modal || (!this.isTouch && document.pointerLockElement !== this.renderer.domElement && this.state === "playing");
     if (!paused) this.update(dt);
     this.updateFx(dt);
@@ -1249,7 +1250,7 @@ export class Game {
       const nx = m.pos.x + steer.x * step, nz = m.pos.z + steer.z * step;
       if (!this.blocked(nx, m.pos.z, 0.5, true)) m.pos.x = nx;
       if (!this.blocked(m.pos.x, nz, 0.5, true)) m.pos.z = nz;
-      moved = step / dt;
+      moved = dt > 0 ? step / dt : 0;
       const want = Math.atan2(steer.x, steer.z);
       let diff = want - m.dir;
       diff = Math.atan2(Math.sin(diff), Math.cos(diff));
@@ -1258,6 +1259,7 @@ export class Game {
 
     // animate
     const b = this.bear;
+    if (!Number.isFinite(m.phase)) m.phase = 0; // a NaN phase hides the bear: its matrix turns invalid
     const prevPhase = m.phase;
     m.phase += dt * (1.4 + moved * 1.1);
     const sw = Math.sin(m.phase) * Math.min(1, moved / 2) * 0.6;
