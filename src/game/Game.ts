@@ -213,6 +213,7 @@ export class Game {
     this.sfx.startMusic();
     this.sfx.startRain();
     this.startT = performance.now();
+    if (import.meta.env.DEV) (window as unknown as { __game: Game }).__game = this;
     this.flashMessage(L("Почините 3 электрощитка, чтобы открыть ворота. Берегитесь Аниматроника. Призрак сторожа рядом — поговорите с ним.", "Repair 3 fuse boxes to open the gate. Beware of the Animatronic. The watchman's ghost is nearby — talk to him."), 6);
     if (this.D.practice) this.flashMessage(L("РЕЖИМ ПРАКТИКИ: Аниматроник бродит по парку, не замечает и не ловит вас. Фонарик не садится.", "PRACTICE MODE: the Animatronic roams the park but never notices or catches you. The flashlight never drains."), 7);
     this.loop();
